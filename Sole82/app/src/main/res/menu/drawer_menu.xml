@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/menu_account" android:title="@string/account_button" />
+        <item android:id="@+id/menu_home" android:title="@string/home" />
+        <item android:id="@+id/menu_catalog" android:title="@string/catalog" />
+        <item android:id="@+id/menu_settings" android:title="@string/settings" />
+    </group>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="@string/log_out"
+        android:menuCategory="secondary" />
+</menu>

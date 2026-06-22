@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace "com.example.sole8"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.sole8"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+
+dependencies {
+    implementation "com.squareup.okhttp3:okhttp:4.11.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.11.0"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation "androidx.preference:preference-ktx:1.2.0"
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+    // Внимание: если эта строка вызовет ошибку, удалите её, так как preference-ktx у вас уже подключен строкой выше
+    implementation libs.androidx.preference.ktx
+
+    kapt 'com.github.bumptech.glide:compiler:4.15.1'
+
+    // Sceneview подключен верно!
+    implementation("io.github.sceneview:arsceneview:2.2.1")
+}

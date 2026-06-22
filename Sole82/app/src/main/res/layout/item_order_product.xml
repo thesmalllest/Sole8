@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginEnd="12dp"
+    android:gravity="center_horizontal">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivOrderProductImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:background="#FFFFFF"
+        app:cornerRadius="10dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/tvOrderProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/dark_bg"
+        android:textSize="11sp"
+        android:text="Jordan 11" />
+
+    <TextView
+        android:id="@+id/tvOrderProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/text_grey"
+        android:textSize="10sp"
+        android:text="44300 ₽" />
+
+</LinearLayout>

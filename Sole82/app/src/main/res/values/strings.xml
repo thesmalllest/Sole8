@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">Sole8</string>
+
+    <!-- Hero -->
+    <string name="hero_title">SOLE8</string>
+
+    <!-- Header -->
+    <string name="auth_button">Log in</string>
+    <string name="sign_up">Sign up</string>
+
+    <!-- New drop -->
+    <string name="new_drop">NEW DROP</string>
+    <string name="view_all">View all</string>
+
+    <!-- Products -->
+    <string name="product_yeezy_name">Adidas Yeezy Boost Solid Grey</string>
+    <string name="product_yeezy_price">19700 rub</string>
+
+    <string name="product_jordan_rose_name">Jordan 11 Rose</string>
+    <string name="product_jordan_rose_price">44300 rub</string>
+
+    <string name="product_forum_name">Adidas Forum Low</string>
+    <string name="product_forum_price">7000 rub</string>
+
+    <string name="product_jordan_purple_name">Jordan 1 Court Purple White</string>
+    <string name="product_jordan_purple_price">52490 rub</string>
+
+    <!-- WHY SOLE8 -->
+    <string name="why_sole8_title">WHY SOLE8?</string>
+    <string name="why_sole8_body">
+        You missed the drop? We did not.
+        You want the rarest? We live for it.
+        Welcome to Sole8 — where late is the new first.
+    </string>
+
+    <!-- Footer -->
+    <string name="store_address_title">ADDRESS</string>
+    <string name="store_address">Moscow, st. Sole8</string>
+    <string name="contacts">CONTACTS</string>
+    <string name="contact_phone">+7 (900) 000 00 00</string>
+
+    <!-- Login/Registration -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="move_to_registration">Don’t have an account? Sign up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="birthday">Date of Birth dd/mm/yyyy</string>
+    <string name="username">Username</string>
+    <string name="password_conf">Confirm your password</string>
+    <string name="move_to_login">Already have an account? Log in</string>
+    <string name="error_email_wrong">Email is incorrect</string>
+    <string name="error_password_wrong">Password is incorrect</string>
+
+    <!-- menu -->
+    <string name="account_button">Account</string>
+    <string name="log_out">Log out</string>
+    <string name="home">Home</string>
+    <string name="catalog">Catalog</string>
+    <string name="settings">Settings</string>
+
+    <!-- LoginActivity -->
+    <string name="error_enter_email">Enter Email</string>
+    <string name="error_enter_password">Enter Password</string>
+    <string name="login_success">Logged in successfully!</string>
+    <string name="login_incorrect">Incorrect login or password</string>
+    <string name="login_title_text">Log in</string>
+    <string name="login_button_text">Log in</string>
+    <string name="move_to_registration_text">Don’t have an account? Sign up</string>
+
+    <!-- MainActivity -->
+    <string name="log_in">Log in</string>
+    <string name="logout_success">Logged out successfully!</string>
+
+    <!-- RegisterActivity -->
+    <string name="error_first_name">Enter your first name</string>
+    <string name="error_last_name">Enter your last name</string>
+    <string name="error_gender">Please select your gender</string>
+    <string name="error_birth_empty">Select your date of birth</string>
+    <string name="error_birth_young">You must be at least 13 years old</string>
+    <string name="error_birth_invalid">Invalid date format</string>
+    <string name="error_username_short">At least 3 characters required</string>
+    <string name="error_email_invalid">Invalid email address</string>
+    <string name="error_password_short">Password must be at least 4 characters</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="register_success">Registration successful!</string>
+    <string name="gender">Gender</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="theme_title">App Theme</string>
+    <string name="theme_summary">Choose light or dark appearance</string>
+    <string name="language_title">Language</string>
+    <string name="language_summary">Choose app language</string>
+
+    <!-- Account -->
+    <string name="edit_profile_btn">Edit Profile</string>
+    <string name="personal_information">Personal information</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_empty">No favorites yet</string>
+
+    <!-- Cart -->
+    <string name="cart_title">Cart</string>
+    <string name="cart_empty">Cart is empty</string>
+    <string name="buy_now">Buy</string>
+    <string name="clear">Clear</string>
+    <string name="total">Total</string>
+
+</resources>

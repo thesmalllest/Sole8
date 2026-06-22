@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/light_bg">
+
+    <!-- EMPTY TEXT -->
+    <TextView
+        android:id="@+id/cartEmptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cart_empty"
+        android:textSize="18sp"
+        android:textColor="@color/dark_bg"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <!-- CART LIST -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+    <!-- LINE -->
+    <View
+        android:id="@+id/totalDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:visibility="gone"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- TOTAL TEXT (RIGHT ALIGN) -->
+    <TextView
+        android:id="@+id/cartTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textAlignment="viewEnd"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_bg"
+        android:visibility="gone"
+        android:paddingEnd="4dp"/>
+
+    <!-- CHECKOUT BUTTON -->
+    <Button
+        android:id="@+id/checkoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/buy_now"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:backgroundTint="@color/accent"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

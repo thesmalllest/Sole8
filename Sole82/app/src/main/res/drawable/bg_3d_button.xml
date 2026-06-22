@@ -1,0 +1,14 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Белый фон -->
+    <solid android:color="@android:color/white"/>
+
+    <!-- Серый контур -->
+    <stroke
+        android:width="5dp"
+        android:color="@color/dark_bg"/>
+
+    <!-- Скругление углов -->
+    <corners android:radius="12dp"/>
+
+</shape>

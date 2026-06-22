@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Sole8"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <!-- SPLASH SCREEN -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Sole8.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- MAIN -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Sole8" />
+
+        <!-- AUTH -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <!-- REGISTER -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- SETTINGS -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings"
+            android:theme="@style/Theme.Sole8" />
+
+        <!-- CATALOG -->
+        <activity
+            android:name=".CatalogActivity"
+            android:exported="false"
+            android:label="@string/catalog"
+            android:theme="@style/Theme.Sole8" />
+
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:exported="false" />
+
+        <!-- FAVORITES -->
+        <activity
+            android:name=".FavoritesActivity"
+            android:exported="false"
+            android:label="@string/favorites_title"
+            android:theme="@style/Theme.Sole8" />
+
+        <!-- CART -->
+        <activity
+            android:name=".CartActivity"
+            android:exported="false"
+            android:label="@string/cart_title"
+            android:theme="@style/Theme.Sole8" />
+
+        <!-- USER ACCOUNT -->
+        <activity
+            android:name=".UserActivity"
+            android:exported="false"
+            android:label="@string/account_button"
+            android:theme="@style/Theme.Sole8" />
+
+    </application>
+
+</manifest>

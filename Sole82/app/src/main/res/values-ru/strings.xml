@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">Sole8</string>
+
+    <!-- Hero -->
+    <string name="hero_title">SOLE8</string>
+
+    <!-- Header -->
+    <string name="auth_button">Войти</string>
+    <string name="sign_up">Зарегистрироваться</string>
+
+    <!-- New drop -->
+    <string name="new_drop">НОВИНКИ</string>
+    <string name="view_all">Все</string>
+
+    <!-- Products -->
+    <string name="product_yeezy_name">Adidas Yeezy Boost Solid Grey</string>
+    <string name="product_yeezy_price">19700 руб</string>
+
+    <string name="product_jordan_rose_name">Jordan 11 Rose</string>
+    <string name="product_jordan_rose_price">44300 руб</string>
+
+    <string name="product_forum_name">Adidas Forum Low</string>
+    <string name="product_forum_price">7000 руб</string>
+
+    <string name="product_jordan_purple_name">Jordan 1 Court Purple White</string>
+    <string name="product_jordan_purple_price">52490 руб</string>
+
+    <!-- WHY SOLE8 -->
+    <string name="why_sole8_title">ПОЧЕМУ SOLE8?</string>
+    <string name="why_sole8_body">
+        Пропустил дроп? Мы — нет.
+        Хочешь самое редкое? Мы живём ради этого.
+        Добро пожаловать в Sole8 — где опоздавший становится первым.
+    </string>
+
+    <!-- Footer -->
+    <string name="store_address_title">ADDRESS</string>
+    <string name="store_address">Москва, ул. Sole8</string>
+    <string name="contacts">CONTACTS</string>
+    <string name="contact_phone">+7 (900) 000 00 00</string>
+
+    <!-- Login/Registration -->
+    <string name="email">Электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="move_to_registration">Нет аккаунта? Зарегистрируйтесь</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="birthday">Дата рождения дд/мм/гггг</string>
+    <string name="username">Имя пользователя</string>
+    <string name="password_conf">Подтвердите пароль</string>
+    <string name="move_to_login">Уже есть аккаунт? Войти</string>
+    <string name="error_email_wrong">Неверный email</string>
+    <string name="error_password_wrong">Неверный пароль</string>
+
+    <!-- menu -->
+    <string name="account_button">Аккаунт</string>
+    <string name="log_out">Выйти</string>
+    <string name="home">Главная</string>
+    <string name="catalog">Каталог</string>
+    <string name="settings">Настройки</string>
+
+    <!-- LoginActivity -->
+    <string name="error_enter_email">Введите электронную почту</string>
+    <string name="error_enter_password">Введите пароль</string>
+    <string name="login_success">Вход выполнен успешно!</string>
+    <string name="login_incorrect">Неверный логин или пароль</string>
+    <string name="login_title_text">Вход</string>
+    <string name="login_button_text">Войти</string>
+    <string name="move_to_registration_text">Нет аккаунта? Зарегистрируйтесь</string>
+
+    <!-- MainActivity -->
+    <string name="log_in">Войти</string>
+    <string name="logout_success">Вы вышли из аккаунта!</string>
+
+    <!-- RegisterActivity -->
+    <string name="error_first_name">Введите имя</string>
+    <string name="error_last_name">Введите фамилию</string>
+    <string name="error_gender">Выберите пол</string>
+    <string name="error_birth_empty">Укажите дату рождения</string>
+    <string name="error_birth_young">Вам должно быть не менее 13 лет</string>
+    <string name="error_birth_invalid">Неверный формат даты</string>
+    <string name="error_username_short">Минимум 3 символа</string>
+    <string name="error_email_invalid">Неверный адрес электронной почты</string>
+    <string name="error_password_short">Пароль должен содержать не менее 4 символов</string>
+    <string name="error_password_mismatch">Пароли не совпадают</string>
+    <string name="register_success">Регистрация прошла успешно!</string>
+    <string name="gender">Пол</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+    <string name="theme_title">Тема приложения</string>
+    <string name="theme_summary">Выберите светлую или тёмную тему</string>
+    <string name="language_title">Язык</string>
+    <string name="language_summary">Выберите язык приложения</string>
+
+    <!-- Account -->
+    <string name="edit_profile_btn">Изменить профиль</string>
+    <string name="personal_information">Аерсональная информация</string>
+
+    <!-- Favorites -->
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_empty">В избранных пусто</string>
+
+    <!-- Cart -->
+    <string name="cart_title">Корзина</string>
+    <string name="cart_empty">Корзина пуста</string>
+    <string name="buy_now">Купить</string>
+    <string name="clear">Очистить</string>
+    <string name="total">Итого</string>
+
+</resources>

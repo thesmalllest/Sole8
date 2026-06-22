@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_bg"
+    android:padding="@dimen/space_24">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- AVATAR -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/hubAvatar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_placeholder"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <!-- TITLE -->
+        <TextView
+            android:id="@+id/userEditTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/personal_information"
+            android:textColor="@color/dark_bg"
+            android:textSize="@dimen/text_medium"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/space_28" />
+
+        <!-- FIRST NAME LABEL -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name"
+            android:textColor="@color/dark_bg"
+            android:textSize="@dimen/text_tiny"
+            android:layout_marginTop="@dimen/space_16" />
+
+        <!-- FIRST NAME INPUT -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstNameLayoutEdit"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/dark_bg"
+            app:boxBackgroundColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editFirstNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_bg"
+                android:paddingVertical="@dimen/space_12"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- LAST NAME LABEL -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name"
+            android:textColor="@color/dark_bg"
+            android:textSize="@dimen/text_tiny"
+            android:layout_marginTop="@dimen/space_16" />
+
+        <!-- LAST NAME INPUT -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lastNameLayoutEdit"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/dark_bg"
+            app:boxBackgroundColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editLastNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_bg"
+                android:paddingVertical="@dimen/space_12"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DIVIDER -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_bg"
+            android:layout_marginTop="@dimen/space_16"/>
+
+        <!-- GENDER LABEL -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gender"
+            android:textColor="@color/dark_bg"
+            android:textSize="@dimen/text_tiny"
+            android:layout_marginTop="@dimen/space_16" />
+
+        <!-- GENDER TOGGLE (ENABLED HERE) -->
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/genderToggleEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/maleBtnEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/male"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/dark_bg"
+                android:textColor="@color/white"
+                app:cornerRadius="@dimen/space_12"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/femaleBtnEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/female"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/dark_bg"
+                android:textColor="@color/white"
+                app:cornerRadius="@dimen/space_12"/>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <!-- DIVIDER -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_bg"
+            android:layout_marginTop="@dimen/space_16"/>
+
+        <!-- USERNAME LABEL -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:textColor="@color/dark_bg"
+            android:textSize="@dimen/text_tiny"
+            android:layout_marginTop="@dimen/space_16" />
+
+        <!-- USERNAME INPUT -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameLayoutEdit"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/dark_bg"
+            app:boxBackgroundColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editUsernameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_bg"
+                android:paddingVertical="@dimen/space_12" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DIVIDER -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_bg"
+            android:layout_marginTop="@dimen/space_16"/>
+
+        <!-- EMAIL LABEL -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textColor="@color/dark_bg"
+            android:textSize="@dimen/text_tiny"
+            android:layout_marginTop="@dimen/space_16" />
+
+        <!-- EMAIL INPUT -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLayoutEdit"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/dark_bg"
+            app:boxBackgroundColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEmailInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_bg"
+                android:paddingVertical="@dimen/space_12" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DIVIDER -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_bg"
+            android:layout_marginTop="@dimen/space_16"/>
+
+        <!-- BIRTH LABEL -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/birthday"
+            android:textColor="@color/dark_bg"
+            android:textSize="@dimen/text_tiny"
+            android:layout_marginTop="@dimen/space_16" />
+
+        <!-- BIRTH INPUT -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/birthLayoutEdit"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/dark_bg"
+            app:boxBackgroundColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editBirthInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_bg"
+                android:paddingVertical="@dimen/space_12"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- SAVE BUTTON -->
+        <Button
+            android:id="@+id/saveProfileBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save changes"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/dark_bg"
+            android:paddingVertical="@dimen/space_16"
+            android:layout_marginTop="@dimen/space_28"
+            android:elevation="2dp" />
+
+    </LinearLayout>
+</ScrollView>

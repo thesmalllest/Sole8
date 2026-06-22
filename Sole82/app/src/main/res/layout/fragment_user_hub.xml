@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_bg"
+    android:padding="24dp">
+
+    <!-- AVATAR -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/hubAvatar"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar_placeholder"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- USER FULL NAME -->
+    <TextView
+        android:id="@+id/hubUserFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="User Name"
+        android:textColor="@color/dark_bg"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hubAvatar" />
+
+    <!-- PERSONAL INFO -->
+    <TextView
+        android:id="@+id/tvPersonalInformationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Personal Information"
+        android:textColor="@color/dark_bg"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hubUserFullName" />
+
+    <!-- 1. BUTTON VIEW -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPersonalInformation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="View"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/accent"
+        app:cornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPersonalInformationLabel" />
+
+    <!-- 2. ORDERS INFO LABEL (Aligned to the left below the first button) -->
+    <TextView
+        android:id="@+id/tvOrdersInformationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Orders Information"
+        android:textColor="@color/dark_bg"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPersonalInformation" />
+
+    <!-- 2. BUTTON VIEW ORDERS -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnViewOrders"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="View Orders"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/accent"
+        app:cornerRadius="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOrdersInformationLabel" />
+</androidx.constraintlayout.widget.ConstraintLayout>

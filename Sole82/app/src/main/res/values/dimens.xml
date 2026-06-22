@@ -1,0 +1,23 @@
+<resources>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_20">20dp</dimen>
+    <dimen name="space_24">24dp</dimen>
+    <dimen name="space_28">28dp</dimen>
+    <dimen name="space_32">32dp</dimen>
+    <dimen name="space_40">40dp</dimen>
+    <dimen name="logo_size">50dp</dimen>
+    <dimen name="logo_padding">4dp</dimen>
+    <dimen name="text_large">64sp</dimen>
+    <dimen name="text_medium">24sp</dimen>
+    <dimen name="text_regular">18sp</dimen>
+    <dimen name="text_small">16sp</dimen>
+    <dimen name="text_tiny">14sp</dimen>
+    <dimen name="footer_padding_bottom">60dp</dimen>
+    <dimen name="why_text_width">241dp</dimen>
+    <dimen name="why_img_max_width">250dp</dimen>
+    <dimen name="why_img_margin_bottom">70dp</dimen>
+    <dimen name="view_all_width">68dp</dimen>
+    <dimen name="menu_width">280dp</dimen>
+</resources>
