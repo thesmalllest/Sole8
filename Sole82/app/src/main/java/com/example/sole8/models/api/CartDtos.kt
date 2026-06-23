@@ -8,5 +8,6 @@ data class CartItemDto(
     val name: String,
     val price: Double,
     val sizeValue: Double,
+    val stock: Int,
     val imageUrl: String
 )

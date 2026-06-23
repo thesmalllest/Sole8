@@ -15,15 +15,36 @@
     <!-- Products -->
     <string name="product_yeezy_name">Adidas Yeezy Boost Solid Grey</string>
     <string name="product_yeezy_price">19700 руб</string>
-
     <string name="product_jordan_rose_name">Jordan 11 Rose</string>
     <string name="product_jordan_rose_price">44300 руб</string>
-
     <string name="product_forum_name">Adidas Forum Low</string>
     <string name="product_forum_price">7000 руб</string>
-
     <string name="product_jordan_purple_name">Jordan 1 Court Purple White</string>
     <string name="product_jordan_purple_price">52490 руб</string>
+    <string name="product_price_format">%1$d ₽</string>
+
+    <!-- Product Details -->
+    <string name="product_not_found">Товар не найден</string>
+    <string name="product_loading_error">Ошибка загрузки товара</string>
+    <string name="product_3d_display_error">Не удалось отобразить 3D-объект</string>
+    <string name="product_3d_server_code_error">Код ответа сервера: %1$d</string>
+    <string name="product_3d_empty_response">Пустой ответ</string>
+    <string name="product_3d_loading_error_format">Ошибка загрузки: %1$s</string>
+    <string name="favorite_removed">Удалено из избранного</string>
+    <string name="favorite_added">Добавлено в избранное</string>
+    <string name="product_error_format">Ошибка: %1$s</string>
+    <string name="select_product_size">Выберите размер товара перед покупкой</string>
+    <string name="product_added_to_cart">Товар добавлен в корзину</string>
+    <string name="product_favourite_cd">Избранное</string>
+    <string name="product_photo_cd">Фото товара</string>
+    <string name="product_3d_cd">3D-просмотр</string>
+    <string name="product_name_placeholder">Название</string>
+    <string name="product_price_placeholder">0 ₽</string>
+    <string name="select_size_title">Выберите размер:</string>
+    <string name="description_title">Описание:</string>
+    <string name="description_placeholder">Описание</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+    <string name="product_image_cd">Изображение товара</string>
 
     <!-- WHY SOLE8 -->
     <string name="why_sole8_title">ПОЧЕМУ SOLE8?</string>
@@ -34,9 +55,9 @@
     </string>
 
     <!-- Footer -->
-    <string name="store_address_title">ADDRESS</string>
+    <string name="store_address_title">АДРЕС</string>
     <string name="store_address">Москва, ул. Sole8</string>
-    <string name="contacts">CONTACTS</string>
+    <string name="contacts">КОНТАКТЫ</string>
     <string name="contact_phone">+7 (900) 000 00 00</string>
 
     <!-- Login/Registration -->
@@ -69,45 +90,123 @@
     <string name="login_title_text">Вход</string>
     <string name="login_button_text">Войти</string>
     <string name="move_to_registration_text">Нет аккаунта? Зарегистрируйтесь</string>
+    <string name="login_fill_all_fields">Заполните все поля</string>
+    <string name="login_welcome_format">Добро пожаловать, %1$s</string>
 
     <!-- MainActivity -->
     <string name="log_in">Войти</string>
     <string name="logout_success">Вы вышли из аккаунта!</string>
 
     <!-- RegisterActivity -->
-    <string name="error_first_name">Введите имя</string>
-    <string name="error_last_name">Введите фамилию</string>
+    <string name="error_first_name">Имя должно содержать только буквы и быть длиной от 2 до 50 символов</string>
+    <string name="error_last_name">Фамилия должна содержать только буквы и быть длиной от 2 до 50 символов</string>
     <string name="error_gender">Выберите пол</string>
     <string name="error_birth_empty">Укажите дату рождения</string>
     <string name="error_birth_young">Вам должно быть не менее 13 лет</string>
     <string name="error_birth_invalid">Неверный формат даты</string>
-    <string name="error_username_short">Минимум 3 символа</string>
+    <string name="error_username_short">Имя пользователя должно содержать 3–20 символов: буквы, цифры, . или _</string>
     <string name="error_email_invalid">Неверный адрес электронной почты</string>
-    <string name="error_password_short">Пароль должен содержать не менее 4 символов</string>
+    <string name="error_password_short">Пароль должен содержать минимум 8 символов, включая буквы и цифры</string>
     <string name="error_password_mismatch">Пароли не совпадают</string>
     <string name="register_success">Регистрация прошла успешно!</string>
+    <string name="register_error">Ошибка регистрации. Проверьте данные или попробуйте другой email/username</string>
     <string name="gender">Пол</string>
 
     <!-- Settings -->
-    <string name="settings_title">Настройки</string>
+    <string name="settings_title">НАСТРОЙКИ</string>
     <string name="theme_title">Тема приложения</string>
     <string name="theme_summary">Выберите светлую или тёмную тему</string>
     <string name="language_title">Язык</string>
     <string name="language_summary">Выберите язык приложения</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="theme_system">Как в системе</string>
+    <string name="language_english">Английский</string>
+    <string name="language_russian">Русский</string>
 
     <!-- Account -->
     <string name="edit_profile_btn">Изменить профиль</string>
-    <string name="personal_information">Аерсональная информация</string>
+    <string name="personal_information">Персональная информация</string>
+    <string name="loading">Загрузка…</string>
+    <string name="user_name_placeholder">Имя пользователя</string>
+    <string name="view">Посмотреть</string>
+    <string name="orders_information">Информация о заказах</string>
+    <string name="view_orders">Посмотреть заказы</string>
 
     <!-- Favorites -->
-    <string name="favorites_title">Favorites</string>
+    <string name="favorites_title">ИЗБРАННОЕ</string>
     <string name="favorites_empty">В избранных пусто</string>
 
     <!-- Cart -->
-    <string name="cart_title">Корзина</string>
+    <string name="cart_title">КОРЗИНА</string>
     <string name="cart_empty">Корзина пуста</string>
     <string name="buy_now">Купить</string>
     <string name="clear">Очистить</string>
     <string name="total">Итого</string>
+    <string name="cart_item_size_format">Размер: %1$s</string>
+    <string name="cart_item_price_format">%1$d ₽</string>
+    <string name="cart_only_stock_available">В наличии только: %1$d</string>
+    <string name="cart_remove_error">Ошибка удаления товара</string>
+    <string name="cart_not_enough_stock">Недостаточно товара на складе</string>
+    <string name="cart_total_format">Итого: %1$d ₽</string>
+    <string name="cart_clear_error">Ошибка очистки корзины</string>
+    <string name="cart_stock_check_error">Ошибка проверки остатков</string>
+    <string name="cart_not_enough_stock_for_item">Недостаточно товара: %1$s. В наличии: %2$d</string>
+    <string name="cart_product_image_cd">Изображение товара</string>
+    <string name="cart_decrease_quantity_cd">Уменьшить количество</string>
+    <string name="cart_increase_quantity_cd">Увеличить количество</string>
+    <string name="cart_remove_item_cd">Удалить товар</string>
+
+    <!-- Checkout Orders -->
+    <string-array name="checkout_addresses">
+        <item>Магазин Sole8, Москва, Тверская улица, 12</item>
+        <item>Пункт выдачи Sole8, Москва, улица Арбат, 25</item>
+        <item>Офис доставки Sole8, Москва, Ленинский проспект, 40</item>
+    </string-array>
+    <string name="checkout_fill_all_fields">Заполните все поля</string>
+    <string name="checkout_invalid_phone">Введите корректный номер телефона в международном формате, например +4915123456789</string>
+    <string name="checkout_success">Заказ успешно оформлен!</string>
+    <string name="checkout_error_format">Ошибка оформления заказа: %1$s</string>
+    <string name="checkout_order_title">Оформление заказа</string>
+    <string name="checkout_full_name_hint">ФИО</string>
+    <string name="checkout_phone_hint">Номер телефона</string>
+    <string name="checkout_address_hint">Адрес доставки</string>
+    <string name="checkout_place_order">Оформить заказ</string>
+
+    <!-- Orders -->
+    <string name="order_title">Заказ</string>
+    <string name="order_date_format">Дата: %1$s</string>
+    <string name="order_time_format">Время: %1$s</string>
+    <string name="order_total_format">Итого: %1$d ₽</string>
+    <string name="order_address_format">Адрес: %1$s</string>
+    <string name="order_address_not_specified">Не указан</string>
+    <string name="order_address_load_error">Адрес: не удалось загрузить данные</string>
+    <string name="order_product_price_format">%1$d ₽</string>
+    <string name="orders_load_error">Не удалось загрузить историю заказов</string>
+    <string name="order_details_title">Детали заказа</string>
+    <string name="order_status_pending">Статус: в обработке</string>
+    <string name="order_total_price_placeholder">Итоговая стоимость: 0 ₽</string>
+    <string name="orders_empty">Вы ещё не оформили ни одного заказа.</string>
+    <string name="order_status_pending_short">В обработке</string>
+
+    <!-- Catalog -->
+    <string name="catalog_title">КАТАЛОГ</string>
+    <string name="catalog_search_hint">Поиск…</string>
+    <string name="catalog_min_price_hint">От ₽</string>
+    <string name="catalog_max_price_hint">До ₽</string>
+    <string name="catalog_loading_error">Ошибка загрузки каталога</string>
+    <string name="favorites_loading_error">Не удалось загрузить избранное</string>
+    <string name="filter_all_brands">Все бренды</string>
+    <string name="sort_default">По умолчанию</string>
+    <string name="sort_price_low_high">Цена: по возрастанию</string>
+    <string name="sort_price_high_low">Цена: по убыванию</string>
+    <string name="catalog_product_image_cd">Изображение товара</string>
+    <string name="favorite_button_cd">Добавить в избранное</string>
+
+    <!-- Edit Profile -->
+    <string name="save_changes">Сохранить изменения</string>
+    <string name="profile_updated">Профиль обновлён</string>
+    <string name="profile_update_error">Ошибка обновления профиля. Проверьте email или имя пользователя</string>
+    <string name="select_gender">Выберите пол</string>
 
 </resources>

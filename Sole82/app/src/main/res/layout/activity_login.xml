@@ -49,14 +49,16 @@
             app:boxCornerRadiusTopEnd="@dimen/space_12"
             app:boxCornerRadiusBottomStart="@dimen/space_12"
             app:boxCornerRadiusBottomEnd="@dimen/space_12"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/input_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:paddingVertical="@dimen/space_12" />
+                android:paddingVertical="@dimen/space_12"
+                android:textColor="@color/dark_bg"
+                android:textColorHint="@color/text_grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password -->
@@ -74,14 +76,16 @@
             app:boxCornerRadiusTopEnd="@dimen/space_12"
             app:boxCornerRadiusBottomStart="@dimen/space_12"
             app:boxCornerRadiusBottomEnd="@dimen/space_12"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/input_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:paddingVertical="@dimen/space_12" />
+                android:paddingVertical="@dimen/space_12"
+                android:textColor="@color/dark_bg"
+                android:textColorHint="@color/text_grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Log in Btn -->

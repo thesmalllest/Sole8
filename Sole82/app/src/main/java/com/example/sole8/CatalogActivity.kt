@@ -1,24 +1,24 @@
 package com.example.sole8
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import android.text.TextWatcher
-import android.text.Editable
-import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sole8.adapters.ProductListAdapter
 import com.example.sole8.network.ApiClient
 import com.example.sole8.util.FavoriteProductsCache
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class CatalogActivity : BaseDrawerActivity() {
 
@@ -29,6 +29,14 @@ class CatalogActivity : BaseDrawerActivity() {
     private lateinit var sortSpinner: Spinner
     private lateinit var etPriceMin: EditText
     private lateinit var etPriceMax: EditText
+
+    private val sortKeys = listOf(
+        ProductListAdapter.SORT_DEFAULT,
+        ProductListAdapter.SORT_PRICE_LOW_HIGH,
+        ProductListAdapter.SORT_PRICE_HIGH_LOW
+    )
+
+    private val brandKeys = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +59,20 @@ class CatalogActivity : BaseDrawerActivity() {
         etPriceMin = findViewById(R.id.etPriceMin)
         etPriceMax = findViewById(R.id.etPriceMax)
 
-        val sortOptions = listOf("Default", "Price: Low to High", "Price: High to Low")
+        setupSortSpinner()
+        setupSearchAndPriceFilters()
+        loadCatalog()
+        loadFavorites()
+        observeFavorites()
+    }
+
+    private fun setupSortSpinner() {
+        val sortOptions = listOf(
+            getString(R.string.sort_default),
+            getString(R.string.sort_price_low_high),
+            getString(R.string.sort_price_high_low)
+        )
+
         val sortAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sortOptions)
         sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         sortSpinner.adapter = sortAdapter
@@ -60,11 +81,15 @@ class CatalogActivity : BaseDrawerActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 updateCatalogFilter()
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+    }
 
+    private fun setupSearchAndPriceFilters() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = false
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 updateCatalogFilter()
                 return true
@@ -73,32 +98,47 @@ class CatalogActivity : BaseDrawerActivity() {
 
         etPriceMin.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) { updateCatalogFilter() }
+
+            override fun afterTextChanged(s: Editable?) {
+                updateCatalogFilter()
+            }
         })
 
         etPriceMax.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) { updateCatalogFilter() }
-        })
 
-        // --- Catalog Loading ---
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                updateCatalogFilter()
+            }
+        })
+    }
+
+    private fun loadCatalog() {
         lifecycleScope.launch {
             try {
                 val products = ApiClient.productsApi.getProducts()
                 val adapter = ProductListAdapter(products)
                 recycler.adapter = adapter
 
-                val uniqueBrands = mutableListOf("All Brands")
                 val serverBrands = products.map { it.brand }.distinct().filter { !it.isNullOrEmpty() }
-                uniqueBrands.addAll(serverBrands)
+
+                brandKeys.clear()
+                brandKeys.add(ProductListAdapter.BRAND_ALL)
+                brandKeys.addAll(serverBrands)
+
+                val brandTitles = mutableListOf(getString(R.string.filter_all_brands))
+                brandTitles.addAll(serverBrands)
 
                 val spinnerAdapter = ArrayAdapter(
                     this@CatalogActivity,
                     android.R.layout.simple_spinner_item,
-                    uniqueBrands
+                    brandTitles
                 )
+
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 brandSpinner.adapter = spinnerAdapter
 
@@ -106,29 +146,48 @@ class CatalogActivity : BaseDrawerActivity() {
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                         updateCatalogFilter()
                     }
+
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
                 }
 
-                adapter.applyFilters("", "All Brands", 0.0, Double.MAX_VALUE, "Default")
+                adapter.applyFilters(
+                    query = "",
+                    brand = ProductListAdapter.BRAND_ALL,
+                    minPrice = 0.0,
+                    maxPrice = Double.MAX_VALUE,
+                    sortType = ProductListAdapter.SORT_DEFAULT
+                )
 
             } catch (e: Exception) {
-                Toast.makeText(this@CatalogActivity, "Catalog Loading Error", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@CatalogActivity,
+                    getString(R.string.catalog_loading_error),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
+    }
 
-        // --- Favorites Loading ---
+    private fun loadFavorites() {
         lifecycleScope.launch {
             if (!FavoriteProductsCache.loadedOnce) {
                 try {
                     val favs = ApiClient.favoritesApi.getFavorites()
                     FavoriteProductsCache.setFavorites(favs.map { it.id })
                     FavoriteProductsCache.loadedOnce = true
+
                 } catch (e: Exception) {
-                    Toast.makeText(this@CatalogActivity, "Failed to load favorites", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@CatalogActivity,
+                        getString(R.string.favorites_loading_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
+    }
 
+    private fun observeFavorites() {
         lifecycleScope.launch {
             FavoriteProductsCache.favorites.collectLatest {
                 (recycler.adapter as? ProductListAdapter)?.notifyDataSetChanged()
@@ -140,8 +199,21 @@ class CatalogActivity : BaseDrawerActivity() {
         val adapter = recycler.adapter as? ProductListAdapter ?: return
 
         val query = searchView.query.toString()
-        val brand = brandSpinner.selectedItem?.toString() ?: "All Brands"
-        val sortType = sortSpinner.selectedItem?.toString() ?: "Default"
+
+        val brandPosition = brandSpinner.selectedItemPosition
+        val brand = if (brandPosition in brandKeys.indices) {
+            brandKeys[brandPosition]
+        } else {
+            ProductListAdapter.BRAND_ALL
+        }
+
+        val sortPosition = sortSpinner.selectedItemPosition
+        val sortType = if (sortPosition in sortKeys.indices) {
+            sortKeys[sortPosition]
+        } else {
+            ProductListAdapter.SORT_DEFAULT
+        }
+
         val minPrice = etPriceMin.text.toString().toDoubleOrNull() ?: 0.0
         val maxPrice = etPriceMax.text.toString().toDoubleOrNull() ?: Double.MAX_VALUE
 

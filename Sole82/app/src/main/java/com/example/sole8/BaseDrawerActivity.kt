@@ -4,12 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import android.view.View
 
-open class BaseDrawerActivity : AppCompatActivity() {
+open class BaseDrawerActivity : BaseActivity() {
 
     protected lateinit var drawerLayout: DrawerLayout
     protected lateinit var navigationView: NavigationView

@@ -15,7 +15,7 @@
         android:textSize="18sp"
         android:textColor="@color/dark_bg"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <!-- CART LIST -->
     <androidx.recyclerview.widget.RecyclerView
@@ -23,30 +23,30 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <!-- LINE -->
     <View
         android:id="@+id/totalDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#DDDDDD"
+        android:background="@color/bottom_sheet_handle"
         android:visibility="gone"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="12dp" />
 
     <!-- TOTAL TEXT (RIGHT ALIGN) -->
     <TextView
         android:id="@+id/cartTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total"
+        android:text="@string/total"
         android:textAlignment="viewEnd"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/dark_bg"
         android:visibility="gone"
-        android:paddingEnd="4dp"/>
+        android:paddingEnd="4dp" />
 
     <!-- CHECKOUT BUTTON -->
     <Button
@@ -58,5 +58,6 @@
         android:textColor="@color/white"
         android:visibility="gone"
         android:backgroundTint="@color/accent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

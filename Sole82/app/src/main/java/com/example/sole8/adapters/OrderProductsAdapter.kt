@@ -1,5 +1,6 @@
 package com.example.sole8.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.sole8.ProductDetailsActivity
 import com.example.sole8.R
 import com.example.sole8.models.api.OrderItemDetails
 
@@ -26,20 +28,31 @@ class OrderProductsAdapter(private val items: List<OrderItemDetails>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
+        val context = holder.itemView.context
+
         holder.name.text = item.productName
-        holder.price.text = "${item.price.toInt()} ₽"
+        holder.price.text = context.getString(R.string.order_product_price_format, item.price.toInt())
 
         val displayImage = if (!item.imageUrl.isNullOrEmpty()) {
             item.imageUrl
         } else {
-            "android.resource://" + holder.itemView.context.packageName + "/" + R.drawable.logo
+            "android.resource://" + context.packageName + "/" + R.drawable.logo
         }
 
-        Glide.with(holder.itemView.context)
+        Glide.with(context)
             .load(displayImage)
             .placeholder(R.drawable.loading)
             .error(R.drawable.error_image)
             .into(holder.img)
+
+        holder.img.isClickable = true
+        holder.img.isFocusable = true
+
+        holder.img.setOnClickListener {
+            val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("productId", item.productId)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = items.size

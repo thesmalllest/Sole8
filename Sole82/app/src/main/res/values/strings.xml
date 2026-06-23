@@ -15,15 +15,36 @@
     <!-- Products -->
     <string name="product_yeezy_name">Adidas Yeezy Boost Solid Grey</string>
     <string name="product_yeezy_price">19700 rub</string>
-
     <string name="product_jordan_rose_name">Jordan 11 Rose</string>
     <string name="product_jordan_rose_price">44300 rub</string>
-
     <string name="product_forum_name">Adidas Forum Low</string>
     <string name="product_forum_price">7000 rub</string>
-
     <string name="product_jordan_purple_name">Jordan 1 Court Purple White</string>
     <string name="product_jordan_purple_price">52490 rub</string>
+    <string name="product_price_format">%1$d ₽</string>
+
+    <!-- Product Details -->
+    <string name="product_not_found">Product not found</string>
+    <string name="product_loading_error">Product loading error</string>
+    <string name="product_3d_display_error">Failed to display 3D object</string>
+    <string name="product_3d_server_code_error">Server response code: %1$d</string>
+    <string name="product_3d_empty_response">Empty response</string>
+    <string name="product_3d_loading_error_format">Loading error: %1$s</string>
+    <string name="favorite_removed">Removed from favorites</string>
+    <string name="favorite_added">Added to favorites</string>
+    <string name="product_error_format">Error: %1$s</string>
+    <string name="select_product_size">Select product size before buying</string>
+    <string name="product_added_to_cart">Product added to cart</string>
+    <string name="product_favourite_cd">Favourite</string>
+    <string name="product_photo_cd">Product photo</string>
+    <string name="product_3d_cd">3D view</string>
+    <string name="product_name_placeholder">Name</string>
+    <string name="product_price_placeholder">0 ₽</string>
+    <string name="select_size_title">Select the size:</string>
+    <string name="description_title">Description:</string>
+    <string name="description_placeholder">Description</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="product_image_cd">Product image</string>
 
     <!-- WHY SOLE8 -->
     <string name="why_sole8_title">WHY SOLE8?</string>
@@ -69,23 +90,26 @@
     <string name="login_title_text">Log in</string>
     <string name="login_button_text">Log in</string>
     <string name="move_to_registration_text">Don’t have an account? Sign up</string>
+    <string name="login_fill_all_fields">Fill in all fields</string>
+    <string name="login_welcome_format">Welcome, %1$s</string>
 
     <!-- MainActivity -->
     <string name="log_in">Log in</string>
     <string name="logout_success">Logged out successfully!</string>
 
     <!-- RegisterActivity -->
-    <string name="error_first_name">Enter your first name</string>
-    <string name="error_last_name">Enter your last name</string>
+    <string name="error_first_name">First name must contain only letters and be 2–50 characters long</string>
+    <string name="error_last_name">Last name must contain only letters and be 2–50 characters long</string>
     <string name="error_gender">Please select your gender</string>
     <string name="error_birth_empty">Select your date of birth</string>
     <string name="error_birth_young">You must be at least 13 years old</string>
     <string name="error_birth_invalid">Invalid date format</string>
-    <string name="error_username_short">At least 3 characters required</string>
+    <string name="error_username_short">Username must be 3–20 characters: letters, numbers, . or _</string>
     <string name="error_email_invalid">Invalid email address</string>
-    <string name="error_password_short">Password must be at least 4 characters</string>
+    <string name="error_password_short">Password must be at least 8 characters and contain letters and numbers</string>
     <string name="error_password_mismatch">Passwords do not match</string>
     <string name="register_success">Registration successful!</string>
+    <string name="register_error">Registration error. Check your data or try another email/username</string>
     <string name="gender">Gender</string>
 
     <!-- Settings -->
@@ -94,20 +118,95 @@
     <string name="theme_summary">Choose light or dark appearance</string>
     <string name="language_title">Language</string>
     <string name="language_summary">Choose app language</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System</string>
+    <string name="language_english">English</string>
+    <string name="language_russian">Russian</string>
 
     <!-- Account -->
     <string name="edit_profile_btn">Edit Profile</string>
     <string name="personal_information">Personal information</string>
+    <string name="loading">Loading…</string>
+    <string name="user_name_placeholder">User Name</string>
+    <string name="view">View</string>
+    <string name="orders_information">Orders information</string>
+    <string name="view_orders">View orders</string>
 
     <!-- Favorites -->
-    <string name="favorites_title">Favorites</string>
+    <string name="favorites_title">FAVORITES</string>
     <string name="favorites_empty">No favorites yet</string>
 
     <!-- Cart -->
-    <string name="cart_title">Cart</string>
+    <string name="cart_title">CART</string>
     <string name="cart_empty">Cart is empty</string>
     <string name="buy_now">Buy</string>
     <string name="clear">Clear</string>
     <string name="total">Total</string>
+    <string name="cart_item_size_format">Size: %1$s</string>
+    <string name="cart_item_price_format">%1$d ₽</string>
+    <string name="cart_only_stock_available">Only %1$d items available</string>
+    <string name="cart_remove_error">Error removing item</string>
+    <string name="cart_not_enough_stock">Not enough stock</string>
+    <string name="cart_total_format">Total: %1$d ₽</string>
+    <string name="cart_clear_error">Error clearing cart</string>
+    <string name="cart_stock_check_error">Error checking stock</string>
+    <string name="cart_not_enough_stock_for_item">Not enough stock for %1$s. Available: %2$d</string>
+    <string name="cart_product_image_cd">Product image</string>
+    <string name="cart_decrease_quantity_cd">Decrease quantity</string>
+    <string name="cart_increase_quantity_cd">Increase quantity</string>
+    <string name="cart_remove_item_cd">Remove item</string>
+
+    <!-- Checkout Orders -->
+    <string-array name="checkout_addresses">
+        <item>Sole8 Store, Moscow, Tverskaya Street, 12</item>
+        <item>Sole8 Pickup Point, Moscow, Arbat Street, 25</item>
+        <item>Sole8 Delivery Office, Moscow, Leninsky Avenue, 40</item>
+    </string-array>
+    <string name="checkout_fill_all_fields">Please fill in all fields</string>
+    <string name="checkout_invalid_phone">Enter a valid phone number in international format, for example +4915123456789</string>
+    <string name="checkout_success">Order placed successfully!</string>
+    <string name="checkout_error_format">Checkout error: %1$s</string>
+    <string name="checkout_order_title">Checkout Order</string>
+    <string name="checkout_full_name_hint">Full Name</string>
+    <string name="checkout_phone_hint">Phone Number</string>
+    <string name="checkout_address_hint">Delivery Address</string>
+    <string name="checkout_place_order">Place Order</string>
+
+    <!-- Orders -->
+    <string name="order_title">Order</string>
+    <string name="order_date_format">Date: %1$s</string>
+    <string name="order_time_format">Time: %1$s</string>
+    <string name="order_total_format">Total: %1$d ₽</string>
+    <string name="order_address_format">Address: %1$s</string>
+    <string name="order_address_not_specified">Not specified</string>
+    <string name="order_address_load_error">Address: Failed to load details</string>
+    <string name="order_product_price_format">%1$d ₽</string>
+    <string name="orders_load_error">Failed to load orders history</string>
+    <string name="order_details_title">Order Details</string>
+    <string name="order_status_pending">Status: Pending</string>
+    <string name="order_total_price_placeholder">Total Price: 0 ₽</string>
+    <string name="orders_empty">You haven\'t placed any orders yet.</string>
+    <string name="order_status_pending_short">Pending</string>
+
+    <!-- Catalog -->
+    <string name="catalog_title">CATALOG</string>
+    <string name="catalog_search_hint">Search…</string>
+    <string name="catalog_min_price_hint">Min ₽</string>
+    <string name="catalog_max_price_hint">Max ₽</string>
+    <string name="catalog_loading_error">Catalog loading error</string>
+    <string name="favorites_loading_error">Failed to load favorites</string>
+    <string name="filter_all_brands">All Brands</string>
+    <string name="sort_default">Default</string>
+    <string name="sort_price_low_high">Price: Low to High</string>
+    <string name="sort_price_high_low">Price: High to Low</string>
+    <string name="catalog_product_image_cd">Product image</string>
+    <string name="favorite_button_cd">Add to favorites</string>
+
+    <!-- Edit Profile -->
+    <string name="save_changes">Save Changes</string>
+    <string name="profile_updated">Profile updated</string>
+    <string name="profile_update_error">Error updating profile. Check email or username</string>
+    <string name="select_gender">Please select gender</string>
 
 </resources>

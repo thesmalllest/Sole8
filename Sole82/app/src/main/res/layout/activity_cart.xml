@@ -11,24 +11,46 @@
         android:id="@+id/cartToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
         android:background="@color/light_bg"
-        app:navigationIcon="?attr/homeAsUpIndicator">
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="">
 
-        <Button
+        <TextView
+            android:id="@+id/cartToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/cart_title"
+            android:textColor="@color/dark_bg"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08" />
+
+        <TextView
             android:id="@+id/clearCartBtn"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:text="Clear"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/clear"
+            android:textColor="@color/dark_bg"
             android:textSize="12sp"
-            android:textColor="@color/white"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:layout_gravity="end"/>
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <!-- FRAGMENT CONTAINER -->
     <FrameLayout
         android:id="@+id/cart_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
 </LinearLayout>

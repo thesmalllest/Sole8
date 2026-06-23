@@ -1,12 +1,14 @@
 package com.example.sole8
 
 import android.os.Bundle
-import android.view.*
-import android.widget.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.lifecycle.lifecycleScope
 import com.example.sole8.adapters.ProductListAdapter
 import com.example.sole8.network.ApiClient
 import kotlinx.coroutines.launch
@@ -17,7 +19,11 @@ class FavoritesFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private lateinit var prefs: UserPreferences
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
@@ -52,7 +58,11 @@ class FavoritesFragment : Fragment() {
                 }
 
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Ошибка загрузки избранного", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.favorites_loading_error),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

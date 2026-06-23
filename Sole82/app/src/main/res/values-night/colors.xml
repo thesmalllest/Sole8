@@ -4,9 +4,14 @@
     <color name="dark_bg">#E8E8E8</color>
     <color name="dark_bg_3">#B8B8B8</color>
     <color name="accent">#1F095F</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+    <color name="white">#000000</color>
+    <color name="black">#FFFFFF</color>
     <color name="text_grey">#DDDDDD</color>
     <color name="fav_red">#FF3F3F</color>
     <color name="main_border">#101011</color>
+    <color name="input_bg">#171718</color>
+    <color name="footer_bg">#171718</color>
+    <color name="footer_text">#E8E8E8</color>
+    <color name="bottom_sheet_handle">#787878</color>
+    <color name="card_bg">#171718</color>
 </resources>

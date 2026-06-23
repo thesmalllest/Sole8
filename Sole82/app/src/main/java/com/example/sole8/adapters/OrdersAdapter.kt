@@ -21,7 +21,6 @@ class OrdersAdapter(private val orders: List<OrderItemSimple>) :
         val orderId: TextView = view.findViewById(R.id.tvOrderId)
         val status: TextView = view.findViewById(R.id.tvOrderStatus)
         val date: TextView = view.findViewById(R.id.tvOrderDate)
-        // Добавили новые UI элементы во ViewHolder
         val time: TextView = view.findViewById(R.id.tvOrderTime)
         val address: TextView = view.findViewById(R.id.tvOrderAddress)
         val total: TextView = view.findViewById(R.id.tvOrderTotal)
@@ -35,24 +34,30 @@ class OrdersAdapter(private val orders: List<OrderItemSimple>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = orders[position]
+        val context = holder.itemView.context
 
-        holder.orderId.text = "Order #${order.id}"
+        holder.orderId.text = context.getString(R.string.order_title)
         holder.status.text = order.status
 
-        val cleanDate = if (order.createdAt.contains("T")) order.createdAt.substringBefore("T") else order.createdAt
-        holder.date.text = "Date: $cleanDate"
+        val cleanDate = if (order.createdAt.contains("T")) {
+            order.createdAt.substringBefore("T")
+        } else {
+            order.createdAt
+        }
+
+        holder.date.text = context.getString(R.string.order_date_format, cleanDate)
 
         val cleanTime = if (order.createdAt.contains("T")) {
             order.createdAt.substringAfter("T").take(5)
         } else {
             "--:--"
         }
-        holder.time.text = "Time: $cleanTime"
 
-        holder.total.text = "Total: ${order.totalPrice.toInt()} ₽"
+        holder.time.text = context.getString(R.string.order_time_format, cleanTime)
+        holder.total.text = context.getString(R.string.order_total_format, order.totalPrice.toInt())
 
-        val context = holder.itemView.context
-        holder.rvProductsHorizontal.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        holder.rvProductsHorizontal.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         CoroutineScope(Dispatchers.Main).launch {
             try {
@@ -60,12 +65,13 @@ class OrdersAdapter(private val orders: List<OrderItemSimple>) :
                     ApiClient.ordersApi.getOrderDetails(order.id)
                 }
 
-                holder.address.text = "Address: ${details.deliveryAddress ?: "Not specified"}"
+                val deliveryAddress = details.deliveryAddress ?: context.getString(R.string.order_address_not_specified)
 
+                holder.address.text = context.getString(R.string.order_address_format, deliveryAddress)
                 holder.rvProductsHorizontal.adapter = OrderProductsAdapter(details.items)
 
             } catch (e: Exception) {
-                holder.address.text = "Address: Failed to load details"
+                holder.address.text = context.getString(R.string.order_address_load_error)
                 e.printStackTrace()
             }
         }

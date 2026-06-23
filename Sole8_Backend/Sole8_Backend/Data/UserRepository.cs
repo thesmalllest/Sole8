@@ -30,6 +30,46 @@ public class UserRepository
         return await conn.ExecuteScalarAsync<int>(sql, user);
     }
 
+    // CHECK EMAIL
+    public async Task<bool> IsEmailTakenAsync(string email, int? excludeUserId = null)
+    {
+        const string sql = @"
+            SELECT COUNT(1)
+            FROM users
+            WHERE LOWER(email) = LOWER(@Email)
+              AND (@ExcludeUserId IS NULL OR id <> @ExcludeUserId);
+        ";
+
+        using var conn = GetConn();
+        var count = await conn.ExecuteScalarAsync<int>(sql, new
+        {
+            Email = email,
+            ExcludeUserId = excludeUserId
+        });
+
+        return count > 0;
+    }
+
+    // CHECK USERNAME
+    public async Task<bool> IsUsernameTakenAsync(string username, int? excludeUserId = null)
+    {
+        const string sql = @"
+            SELECT COUNT(1)
+            FROM users
+            WHERE LOWER(username) = LOWER(@Username)
+              AND (@ExcludeUserId IS NULL OR id <> @ExcludeUserId);
+        ";
+
+        using var conn = GetConn();
+        var count = await conn.ExecuteScalarAsync<int>(sql, new
+        {
+            Username = username,
+            ExcludeUserId = excludeUserId
+        });
+
+        return count > 0;
+    }
+
     // LOGIN — find user by email
     public async Task<User?> GetByEmailAsync(string email)
     {
@@ -47,7 +87,7 @@ public class UserRepository
                 created_at AS CreatedAt,
                 updated_at AS UpdatedAt
             FROM users
-            WHERE email = @email;
+            WHERE LOWER(email) = LOWER(@email);
         ";
 
         using var conn = GetConn();
@@ -82,19 +122,18 @@ public class UserRepository
     public async Task UpdateProfileAsync(User user)
     {
         const string sql = @"
-        UPDATE users SET
-            first_name = @FirstName,
-            last_name = @LastName,
-            birth_date = @BirthDate,
-            gender = @Gender,
-            username = @Username,
-            email = @Email,
-            updated_at = NOW()
-        WHERE id = @Id;
-    ";
+            UPDATE users SET
+                first_name = @FirstName,
+                last_name = @LastName,
+                birth_date = @BirthDate,
+                gender = @Gender,
+                username = @Username,
+                email = @Email,
+                updated_at = NOW()
+            WHERE id = @Id;
+        ";
 
         using var conn = GetConn();
         await conn.ExecuteAsync(sql, user);
     }
-
 }

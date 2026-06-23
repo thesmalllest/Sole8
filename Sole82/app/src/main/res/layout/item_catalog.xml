@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/space_8">
 
-    <!-- Основной контент карточки -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +17,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/catalog_product_image_cd"
             android:scaleType="centerCrop" />
 
         <LinearLayout
@@ -33,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_bg"
                 android:textSize="@dimen/text_small"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Jordan 11 Rose" />
 
             <TextView
                 android:id="@+id/catalogPrice"
@@ -41,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:textColor="@color/text_grey"
-                android:textSize="@dimen/text_tiny" />
+                android:textSize="@dimen/text_tiny"
+                tools:text="44300 ₽" />
 
         </LinearLayout>
 
@@ -52,6 +55,7 @@
             android:layout_gravity="top"
             android:layout_margin="10dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/favorite_button_cd"
             android:padding="6dp"
             android:src="@drawable/ic_favorite_border" />
 

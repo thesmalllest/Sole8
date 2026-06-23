@@ -1,13 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Основная тема приложения -->
-    <style name="Theme.Sole8" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.Sole8" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/light_bg</item>
     </style>
 
-    <!-- Тема SplashScreen -->
-    <style name="Theme.Sole8.SplashScreen" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:windowBackground">@color/light_bg</item>
+    <style name="Theme.Sole8.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/light_bg</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Sole8</item>
     </style>
 
 </resources>

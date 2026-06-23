@@ -18,7 +18,8 @@ class OrdersListFragment : Fragment() {
     private lateinit var prefs: UserPreferences
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_orders_list, container, false)
 
@@ -26,6 +27,7 @@ class OrdersListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         prefs = UserPreferences(requireContext())
+
         val rvOrders = view.findViewById<RecyclerView>(R.id.rvOrders)
         val tvEmpty = view.findViewById<TextView>(R.id.tvOrdersEmpty)
 
@@ -43,8 +45,9 @@ class OrdersListFragment : Fragment() {
                     rvOrders.visibility = View.VISIBLE
                     rvOrders.adapter = OrdersAdapter(orders)
                 }
+
             } catch (e: Exception) {
-                tvEmpty.text = "Failed to load orders history"
+                tvEmpty.text = getString(R.string.orders_load_error)
                 tvEmpty.visibility = View.VISIBLE
                 rvOrders.visibility = View.GONE
             }

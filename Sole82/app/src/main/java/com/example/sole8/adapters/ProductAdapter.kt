@@ -30,20 +30,20 @@ class ProductAdapter(private val items: List<ProductListDto>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = items[position]
+        val context = holder.itemView.context
 
         Log.d("IMAGE_DEBUG", "Loading URL: ${product.thumbnailUrl}")
 
-        Glide.with(holder.itemView.context)
+        Glide.with(context)
             .load(product.thumbnailUrl)
             .placeholder(R.drawable.loading)
             .error(R.drawable.error_image)
             .into(holder.image)
 
         holder.name.text = product.name
-        holder.price.text = product.price.toString()
+        holder.price.text = context.getString(R.string.product_price_format, product.price.toInt())
 
         holder.itemView.setOnClickListener {
-            val context = holder.itemView.context
             val intent = Intent(context, ProductDetailsActivity::class.java)
 
             intent.putExtra("productId", product.id)
@@ -55,5 +55,6 @@ class ProductAdapter(private val items: List<ProductListDto>) :
             context.startActivity(intent)
         }
     }
+
     override fun getItemCount(): Int = items.size
 }

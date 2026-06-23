@@ -12,7 +12,6 @@ interface OrdersApi {
     suspend fun createOrder(@Body req: CreateOrderRequest): OrderCreatedResponse
     @GET("api/orders")
     suspend fun getOrders(): List<OrderItemSimple>
-
     @GET("api/orders/details/{orderId}")
     suspend fun getOrderDetails(@Path("orderId") orderId: Int): OrderDetails
 }

@@ -2,14 +2,15 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
     app:strokeWidth="1dp"
-    app:strokeColor="@color/light_bg"
-    app:cardBackgroundColor="@android:color/white">
+    app:strokeColor="@color/main_border"
+    app:cardBackgroundColor="@color/card_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +26,7 @@
                 android:id="@+id/tvOrderId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order #1024"
+                android:text="@string/order_title"
                 android:textColor="@color/dark_bg"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -35,7 +36,7 @@
                 android:id="@+id/tvOrderStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pending"
+                android:text="@string/order_status_pending_short"
                 android:textColor="@color/accent"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -54,18 +55,19 @@
                 android:id="@+id/tvOrderDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date: 17/06/2026"
                 android:textColor="@color/text_grey"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                tools:text="Date: 17/06/2026" />
 
             <TextView
                 android:id="@+id/tvOrderTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Time: --:--"
                 android:textColor="@color/text_grey"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                tools:text="Time: --:--" />
+
         </LinearLayout>
 
         <!-- БЛОК АДРЕСА ДОСТАВКИ -->
@@ -74,11 +76,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Address: Loading..."
             android:textColor="@color/dark_bg"
             android:textSize="12sp"
             android:maxLines="1"
-            android:ellipsize="end"/>
+            android:ellipsize="end"
+            tools:text="Address: Loading..." />
 
         <!-- Карусель товаров внутри заказа -->
         <androidx.recyclerview.widget.RecyclerView
@@ -93,12 +95,13 @@
             android:id="@+id/tvOrderTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total: 12 500 ₽"
             android:textAlignment="viewEnd"
             android:textColor="@color/dark_bg"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:layout_marginTop="6dp"/>
+            android:layout_marginTop="6dp"
+            tools:text="Total: 12 500 ₽" />
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

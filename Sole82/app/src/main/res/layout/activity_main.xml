@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@color/dark_bg"
+                android:background="@color/footer_bg"
                 android:paddingBottom="@dimen/footer_padding_bottom">
 
                 <!-- PIC -->
@@ -180,7 +180,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/store_address_title"
-                            android:textColor="@color/light_bg"
+                            android:textColor="@color/footer_text"
                             android:textSize="@dimen/text_regular" />
 
                         <TextView
@@ -188,7 +188,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/store_address"
-                            android:textColor="@color/light_bg"
+                            android:textColor="@color/footer_text"
                             android:textSize="@dimen/text_tiny"
                             android:layout_marginTop="@dimen/space_8"
                             android:padding="@dimen/space_8"
@@ -211,7 +211,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/contacts"
-                            android:textColor="@color/light_bg"
+                            android:textColor="@color/footer_text"
                             android:textSize="@dimen/text_regular" />
 
                         <TextView
@@ -219,7 +219,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/contact_phone"
-                            android:textColor="@color/light_bg"
+                            android:textColor="@color/footer_text"
                             android:textSize="@dimen/text_tiny"
                             android:layout_marginTop="@dimen/space_8"
                             android:padding="@dimen/space_8"

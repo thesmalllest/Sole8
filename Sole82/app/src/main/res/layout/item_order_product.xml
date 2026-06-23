@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -12,7 +13,8 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:scaleType="centerCrop"
-        android:background="#FFFFFF"
+        android:background="@color/card_bg"
+        android:contentDescription="@string/catalog_product_image_cd"
         app:cornerRadius="10dp"
         android:src="@drawable/logo" />
 
@@ -26,7 +28,7 @@
         android:maxLines="1"
         android:textColor="@color/dark_bg"
         android:textSize="11sp"
-        android:text="Jordan 11" />
+        tools:text="Jordan 11" />
 
     <TextView
         android:id="@+id/tvOrderProductPrice"
@@ -35,6 +37,6 @@
         android:layout_marginTop="2dp"
         android:textColor="@color/text_grey"
         android:textSize="10sp"
-        android:text="44300 ₽" />
+        tools:text="44300 ₽" />
 
 </LinearLayout>

@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="theme_entries">
-        <item>Light</item>
-        <item>Dark</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_system</item>
     </string-array>
 
     <string-array name="theme_values">
         <item>light</item>
         <item>dark</item>
+        <item>system</item>
     </string-array>
 
     <string-array name="language_entries">
-        <item>English</item>
-        <item>Русский</item>
+        <item>@string/language_english</item>
+        <item>@string/language_russian</item>
     </string-array>
 
     <string-array name="language_values">

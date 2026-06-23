@@ -3,8 +3,12 @@ package com.example.sole8
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.sole8.models.api.FavoriteRequest
@@ -24,7 +28,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.File
 
-class ProductDetailsActivity : AppCompatActivity() {
+class ProductDetailsActivity : BaseActivity() {
 
     private lateinit var name: TextView
     private lateinit var price: TextView
@@ -70,7 +74,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         val id = intent.getIntExtra("productId", -1)
 
         if (id == -1) {
-            Toast.makeText(this, "Product not found", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.product_not_found), Toast.LENGTH_LONG).show()
             finish()
             return
         }
@@ -90,10 +94,11 @@ class ProductDetailsActivity : AppCompatActivity() {
                 val product = ApiClient.productsApi.getProductDetails(id)
                 setupProductUI(product)
                 syncFavoriteStatus()
+
             } catch (e: Exception) {
                 Toast.makeText(
                     this@ProductDetailsActivity,
-                    "Ошибка загрузки товара",
+                    getString(R.string.product_loading_error),
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -102,7 +107,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     private fun setupProductUI(product: ProductDetailsDto) {
         name.text = product.name
-        price.text = "${product.price} ₽"
+        price.text = getString(R.string.product_price_format, product.price.toInt())
         desc.text = product.description
 
         Glide.with(this)
@@ -115,6 +120,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         if (!modelUrl.isNullOrEmpty()) {
             button3D.visibility = View.VISIBLE
+
             button3D.setOnClickListener {
                 if (is3DModeActive) {
                     disable3DMode()
@@ -122,6 +128,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                     enable3DMode(modelUrl!!)
                 }
             }
+
         } else {
             button3D.visibility = View.GONE
         }
@@ -129,16 +136,16 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     private fun setupSizes(sizes: List<ProductSizeDto>) {
         sizeContainer.removeAllViews()
+
         val buttonsList = mutableListOf<Button>()
 
         for (sizeDto in sizes) {
             val btn = Button(this).apply {
-                text = sizeDto.sizeValue.toString()
+                text = formatSize(sizeDto.sizeValue)
                 textSize = 14f
                 setBackgroundColor(Color.LTGRAY)
                 setTextColor(Color.BLACK)
 
-                // Если товара нет на складе, делаем кнопку недоступной
                 if (sizeDto.stock <= 0) {
                     isEnabled = false
                     alpha = 0.5f
@@ -147,10 +154,12 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             btn.setOnClickListener {
                 selectedSize = sizeDto
+
                 for (b in buttonsList) {
                     b.setBackgroundColor(Color.LTGRAY)
                     b.setTextColor(Color.BLACK)
                 }
+
                 btn.setBackgroundColor(Color.BLACK)
                 btn.setTextColor(Color.WHITE)
             }
@@ -192,10 +201,10 @@ class ProductDetailsActivity : AppCompatActivity() {
                     val response = client.newCall(request).execute()
 
                     if (!response.isSuccessful) {
-                        throw Exception("Код ответа сервера: ${response.code}")
+                        throw Exception(getString(R.string.product_3d_server_code_error, response.code))
                     }
 
-                    val body = response.body ?: throw Exception("Пустой ответ")
+                    val body = response.body ?: throw Exception(getString(R.string.product_3d_empty_response))
                     val tempFile = File.createTempFile("product_model_", ".glb", cacheDir)
 
                     tempFile.outputStream().use { output ->
@@ -203,6 +212,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                             input.copyTo(output)
                         }
                     }
+
                     tempFile
                 }
 
@@ -218,22 +228,27 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     productSceneView.addChildNode(currentModelNode!!)
                     startModelRotation()
+
                 } else {
                     Toast.makeText(
                         this@ProductDetailsActivity,
-                        "Не удалось отобразить 3D-объект",
+                        getString(R.string.product_3d_display_error),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
 
             } catch (e: Exception) {
+                val errorText = e.localizedMessage ?: ""
+
                 Toast.makeText(
                     this@ProductDetailsActivity,
-                    "Ошибка загрузки: ${e.localizedMessage}",
+                    getString(R.string.product_3d_loading_error_format, errorText),
                     Toast.LENGTH_LONG
                 ).show()
+
                 e.printStackTrace()
                 disable3DMode()
+
             } finally {
                 modelProgressBar.visibility = View.GONE
             }
@@ -271,35 +286,52 @@ class ProductDetailsActivity : AppCompatActivity() {
                     ApiClient.favoritesApi.removeFromFavorites(FavoriteRequest(currentProductId))
                     FavoriteProductsCache.remove(currentProductId)
                     isFavorite = false
+
                     Toast.makeText(
                         this@ProductDetailsActivity,
-                        "Удалено из избранного",
+                        getString(R.string.favorite_removed),
                         Toast.LENGTH_SHORT
                     ).show()
+
                 } else {
                     ApiClient.favoritesApi.addToFavorites(FavoriteRequest(currentProductId))
                     FavoriteProductsCache.add(currentProductId)
                     isFavorite = true
+
                     Toast.makeText(
                         this@ProductDetailsActivity,
-                        "Добавлено в избранное",
+                        getString(R.string.favorite_added),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+
                 updateFavIcon()
+
             } catch (e: Exception) {
-                Toast.makeText(this@ProductDetailsActivity, "Ошибка: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+                val errorText = e.localizedMessage ?: ""
+
+                Toast.makeText(
+                    this@ProductDetailsActivity,
+                    getString(R.string.product_error_format, errorText),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
 
     private fun addToCart() {
         val size = selectedSize
+
         if (size == null) {
-            Toast.makeText(this, "Выберите размер товара перед покупкой!", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(
+                this,
+                getString(R.string.select_product_size),
+                Toast.LENGTH_SHORT
+            ).show()
+
             return
         }
+
         lifecycleScope.launch {
             try {
                 ApiClient.cartApi.addToCart(
@@ -307,11 +339,30 @@ class ProductDetailsActivity : AppCompatActivity() {
                     sizeId = size.id,
                     quantity = 1
                 )
-                Toast.makeText(this@ProductDetailsActivity, "Товар добавлен в корзину!", Toast.LENGTH_SHORT).show()
+
+                Toast.makeText(
+                    this@ProductDetailsActivity,
+                    getString(R.string.product_added_to_cart),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            } catch (e: Exception) {
+                val errorText = e.localizedMessage ?: ""
+
+                Toast.makeText(
+                    this@ProductDetailsActivity,
+                    getString(R.string.product_error_format, errorText),
+                    Toast.LENGTH_LONG
+                ).show()
             }
-            catch (e: Exception) {
-                Toast.makeText(this@ProductDetailsActivity, "Ошибка: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
-            }
+        }
+    }
+
+    private fun formatSize(size: Double): String {
+        return if (size % 1.0 == 0.0) {
+            size.toInt().toString()
+        } else {
+            size.toString()
         }
     }
 }

@@ -8,7 +8,6 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.sole8.models.api.UserLoginRequest
 import com.example.sole8.network.ApiClient
@@ -18,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var prefs: UserPreferences
 
@@ -38,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
         val loginTitle = findViewById<TextView>(R.id.loginTitle)
 
         loginTitle.alpha = 0f
+
         ObjectAnimator.ofFloat(loginTitle, "alpha", 0f, 1f).apply {
             duration = 800
             interpolator = DecelerateInterpolator()
@@ -49,7 +49,12 @@ class LoginActivity : AppCompatActivity() {
             val password = passEdit.text?.toString()?.trim() ?: ""
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Fill in all the fields.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    getString(R.string.login_fill_all_fields),
+                    Toast.LENGTH_SHORT
+                ).show()
+
                 return@setOnClickListener
             }
 
@@ -62,12 +67,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(email: String, password: String) {
-
         val request = UserLoginRequest(email, password)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-
                 val response = ApiClient.userApi.login(request)
 
                 prefs.saveToken(response.token)
@@ -75,10 +78,9 @@ class LoginActivity : AppCompatActivity() {
                 prefs.setUserLoggedIn(true)
 
                 withContext(Dispatchers.Main) {
-
                     Toast.makeText(
                         this@LoginActivity,
-                        "Welcome, ${response.user.firstName}",
+                        getString(R.string.login_welcome_format, response.user.firstName),
                         Toast.LENGTH_SHORT
                     ).show()
 
@@ -87,13 +89,12 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             } catch (e: Exception) {
-
                 Log.e("LOGIN_ERROR", "Log in Error", e)
 
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
                         this@LoginActivity,
-                        "Uncorrect login or password",
+                        getString(R.string.login_incorrect),
                         Toast.LENGTH_LONG
                     ).show()
                 }

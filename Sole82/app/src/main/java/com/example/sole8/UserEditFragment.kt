@@ -2,6 +2,7 @@ package com.example.sole8
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Calendar
 
 class UserEditFragment : Fragment() {
 
@@ -29,7 +30,6 @@ class UserEditFragment : Fragment() {
     ) = inflater.inflate(R.layout.fragment_user_edit, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         prefs = UserPreferences(requireContext())
         val user = prefs.getUser()
 
@@ -55,6 +55,11 @@ class UserEditFragment : Fragment() {
         emailInput.setText(user.email)
         birthInput.setText(user.birthDate)
 
+        birthInput.inputType = InputType.TYPE_NULL
+        birthInput.isFocusable = false
+        birthInput.isFocusableInTouchMode = false
+        birthInput.isClickable = true
+
         fun applyGender(checkedId: Int) {
             if (checkedId == R.id.maleBtnEdit) {
                 maleBtn.setBackgroundColor(requireContext().getColor(R.color.black))
@@ -78,38 +83,76 @@ class UserEditFragment : Fragment() {
         }
 
         birthInput.setOnClickListener {
-            val c = Calendar.getInstance()
+            val calendar = Calendar.getInstance()
+
             DatePickerDialog(
                 requireContext(),
-                { _, y, m, d -> birthInput.setText(String.format("%02d/%02d/%04d", d, m + 1, y)) },
-                c.get(Calendar.YEAR),
-                c.get(Calendar.MONTH),
-                c.get(Calendar.DAY_OF_MONTH)
+                { _, year, month, day ->
+                    birthInput.setText(String.format("%02d/%02d/%04d", day, month + 1, year))
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
 
         val saveBtn = view.findViewById<Button>(R.id.saveProfileBtn)
-        saveBtn.text = "Save Changes"
+        saveBtn.text = getString(R.string.save_changes)
 
         saveBtn.setOnClickListener {
+            firstNameLayout.error = null
+            lastNameLayout.error = null
+            usernameLayout.error = null
+            emailLayout.error = null
+            birthLayout.error = null
 
-            val first = firstNameInput.text.toString().trim()
-            val last = lastNameInput.text.toString().trim()
-            val username = usernameInput.text.toString().trim()
-            val email = emailInput.text.toString().trim()
-            val birth = birthInput.text.toString().trim()
-            val gender = if (genderToggle.checkedButtonId == R.id.maleBtnEdit) "M" else "F"
+            val first = firstNameInput.text?.toString()?.trim() ?: ""
+            val last = lastNameInput.text?.toString()?.trim() ?: ""
+            val username = usernameInput.text?.toString()?.trim() ?: ""
+            val email = emailInput.text?.toString()?.trim() ?: ""
+            val birth = birthInput.text?.toString()?.trim() ?: ""
+            val selectedGenderId = genderToggle.checkedButtonId
 
             var ok = true
-            if (first.isEmpty()) { firstNameLayout.error = "First name cannot be empty"; ok = false }
-            if (last.isEmpty()) { lastNameLayout.error = "Last name cannot be empty"; ok = false }
-            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailLayout.error = "Invalid email address"; ok = false
+
+            if (!isValidName(first)) {
+                firstNameLayout.error = getString(R.string.error_first_name)
+                ok = false
             }
-            if (username.length < 3) { usernameLayout.error = "Username is too short"; ok = false }
-            if (birth.isEmpty()) { birthLayout.error = "Birth date cannot be empty"; ok = false }
+
+            if (!isValidName(last)) {
+                lastNameLayout.error = getString(R.string.error_last_name)
+                ok = false
+            }
+
+            if (!isValidUsername(username)) {
+                usernameLayout.error = getString(R.string.error_username_short)
+                ok = false
+            }
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailLayout.error = getString(R.string.error_email_invalid)
+                ok = false
+            }
+
+            if (!isValidBirthDate(birth)) {
+                birthLayout.error = getString(R.string.error_birth_young)
+                ok = false
+            }
+
+            if (selectedGenderId == -1) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.select_gender),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                ok = false
+            }
 
             if (!ok) return@setOnClickListener
+
+            val gender = if (selectedGenderId == R.id.maleBtnEdit) "M" else "F"
 
             val dto = UserProfileUpdate(
                 firstName = first,
@@ -122,7 +165,7 @@ class UserEditFragment : Fragment() {
 
             lifecycleScope.launch {
                 try {
-                    val response = ApiClient.userApi.updateProfile(dto)
+                    ApiClient.userApi.updateProfile(dto)
 
                     val updated = user.copy(
                         firstName = first,
@@ -135,13 +178,65 @@ class UserEditFragment : Fragment() {
 
                     prefs.saveUserFromApi(updated)
 
-                    Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.profile_updated),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
                     parentFragmentManager.popBackStack()
 
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.profile_update_error),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
+        }
+    }
+
+    private fun isValidName(value: String): Boolean {
+        return value.matches(Regex("^[A-Za-zА-Яа-яЁё\\s\\-]{2,50}$"))
+    }
+
+    private fun isValidUsername(value: String): Boolean {
+        return value.matches(Regex("^[A-Za-z0-9._]{3,20}$"))
+    }
+
+    private fun isValidBirthDate(value: String): Boolean {
+        return try {
+            val parts = value.split("/")
+            if (parts.size != 3) return false
+
+            val day = parts[0].toInt()
+            val month = parts[1].toInt()
+            val year = parts[2].toInt()
+
+            if (month !in 1..12) return false
+            if (day !in 1..31) return false
+
+            val today = Calendar.getInstance()
+
+            val birthDate = Calendar.getInstance().apply {
+                isLenient = false
+                set(year, month - 1, day)
+                time
+            }
+
+            if (birthDate.after(today)) return false
+
+            var age = today.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR)
+
+            if (today.get(Calendar.DAY_OF_YEAR) < birthDate.get(Calendar.DAY_OF_YEAR)) {
+                age--
+            }
+
+            age >= 13
+
+        } catch (e: Exception) {
+            false
         }
     }
 }

@@ -10,7 +10,7 @@
     android:descendantFocusability="afterDescendants"
     android:isScrollContainer="false">
 
-<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/first_name"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/input_bg"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusTopStart="@dimen/space_12"
                 app:boxCornerRadiusTopEnd="@dimen/space_12"
@@ -59,7 +59,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:paddingVertical="@dimen/space_8" />
+                    android:paddingVertical="@dimen/space_8"
+                    android:textColor="@color/dark_bg"
+                    android:textColorHint="@color/text_grey" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Surname -->
@@ -70,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:hint="@string/last_name"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/input_bg"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusTopStart="@dimen/space_12"
                 app:boxCornerRadiusTopEnd="@dimen/space_12"
@@ -84,7 +87,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:paddingVertical="@dimen/space_8" />
+                    android:paddingVertical="@dimen/space_8"
+                    android:textColor="@color/dark_bg"
+                    android:textColorHint="@color/text_grey" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Gender -->
@@ -122,17 +128,18 @@
                     android:textSize="@dimen/text_tiny"
                     app:checkedIcon="@null"
                     app:cornerRadius="@dimen/space_12" />
+
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
-            <!-- Год рождения -->
+            <!-- Birth date -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dateLayout"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/space_8"
                 android:hint="@string/birthday"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/input_bg"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusTopStart="@dimen/space_12"
                 app:boxCornerRadiusTopEnd="@dimen/space_12"
@@ -146,7 +153,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="date"
-                    android:paddingVertical="@dimen/space_8" />
+                    android:paddingVertical="@dimen/space_8"
+                    android:textColor="@color/dark_bg"
+                    android:textColorHint="@color/text_grey" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Username -->
@@ -157,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:hint="@string/username"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/input_bg"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusTopStart="@dimen/space_12"
                 app:boxCornerRadiusTopEnd="@dimen/space_12"
@@ -171,7 +181,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:paddingVertical="@dimen/space_8" />
+                    android:paddingVertical="@dimen/space_8"
+                    android:textColor="@color/dark_bg"
+                    android:textColorHint="@color/text_grey" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Email -->
@@ -182,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:hint="@string/email"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/input_bg"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusTopStart="@dimen/space_12"
                 app:boxCornerRadiusTopEnd="@dimen/space_12"
@@ -196,7 +209,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:paddingVertical="@dimen/space_8" />
+                    android:paddingVertical="@dimen/space_8"
+                    android:textColor="@color/dark_bg"
+                    android:textColorHint="@color/text_grey" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Password -->
@@ -207,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:hint="@string/password"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/input_bg"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusTopStart="@dimen/space_12"
                 app:boxCornerRadiusTopEnd="@dimen/space_12"
@@ -221,7 +237,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:paddingVertical="@dimen/space_8" />
+                    android:paddingVertical="@dimen/space_8"
+                    android:textColor="@color/dark_bg"
+                    android:textColorHint="@color/text_grey" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Confirm -->
@@ -232,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:hint="@string/password_conf"
-                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundColor="@color/input_bg"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusTopStart="@dimen/space_12"
                 app:boxCornerRadiusTopEnd="@dimen/space_12"
@@ -246,7 +265,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:paddingVertical="@dimen/space_8" />
+                    android:paddingVertical="@dimen/space_8"
+                    android:textColor="@color/dark_bg"
+                    android:textColorHint="@color/text_grey" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Sign up btn -->
@@ -274,6 +296,9 @@
                 android:text="@string/move_to_login"
                 android:textColor="@color/dark_bg"
                 android:textSize="@dimen/text_tiny" />
+
         </LinearLayout>
+
     </LinearLayout>
+
 </ScrollView>

@@ -11,8 +11,23 @@
         android:id="@+id/favToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
         android:background="@color/light_bg"
-        app:navigationIcon="?attr/homeAsUpIndicator" />
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="">
+
+        <TextView
+            android:id="@+id/favoritesToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/favorites_title"
+            android:textColor="@color/dark_bg"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- FRAGMENT CONTAINER -->
     <FrameLayout

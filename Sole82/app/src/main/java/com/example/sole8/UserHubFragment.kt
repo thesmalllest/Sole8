@@ -28,11 +28,9 @@ class UserHubFragment : Fragment() {
         prefs = UserPreferences(requireContext())
         fullNameText = view.findViewById(R.id.hubUserFullName)
 
-        // 1. Сначала  выводим локальные данные из кэша (UserPreferences)
         val cachedUser = prefs.getUser()
         displayFullName(cachedUser.firstName, cachedUser.lastName)
 
-        // 2. Асинхронно делаем запрос на бэкенд, чтобы получить самую актуальную инфу
         lifecycleScope.launch {
             try {
                 val fromApi = ApiClient.userApi.getProfile()
@@ -41,7 +39,8 @@ class UserHubFragment : Fragment() {
 
                 displayFullName(fromApi.firstName, fromApi.lastName)
 
-            } catch (_: Exception) {}
+            } catch (_: Exception) {
+            }
         }
 
         view.findViewById<MaterialButton>(R.id.btnPersonalInformation).setOnClickListener {
@@ -52,7 +51,7 @@ class UserHubFragment : Fragment() {
                 .commit()
         }
 
-       view.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnViewOrders).setOnClickListener {
+        view.findViewById<MaterialButton>(R.id.btnViewOrders).setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.userFragmentContainer, OrdersListFragment())
@@ -61,10 +60,9 @@ class UserHubFragment : Fragment() {
         }
     }
 
-    // Вспомогательная функция для безопасного вывода имени
     private fun displayFullName(firstName: String, lastName: String) {
         if (firstName.isEmpty() && lastName.isEmpty()) {
-            fullNameText.text = "Loading..."
+            fullNameText.text = getString(R.string.loading)
         } else {
             fullNameText.text = "$firstName $lastName"
         }

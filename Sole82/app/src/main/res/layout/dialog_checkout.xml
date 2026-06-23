@@ -12,13 +12,13 @@
         android:layout_height="4dp"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:background="#DDDDDD" />
+        android:background="@color/bottom_sheet_handle" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Checkout Order"
+        android:text="@string/checkout_order_title"
         android:textColor="@color/dark_bg"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -29,15 +29,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundColor="@color/input_bg"
         app:boxStrokeColor="@color/dark_bg">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCheckoutName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:textColor="@color/dark_bg" />
+            android:hint="@string/checkout_full_name_hint"
+            android:textColor="@color/dark_bg"
+            android:textColorHint="@color/text_grey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,16 +48,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundColor="@color/input_bg"
         app:boxStrokeColor="@color/dark_bg">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCheckoutPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
+            android:hint="@string/checkout_phone_hint"
             android:inputType="phone"
-            android:textColor="@color/dark_bg" />
+            android:textColor="@color/dark_bg"
+            android:textColorHint="@color/text_grey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,15 +68,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundColor="@color/input_bg"
         app:boxStrokeColor="@color/dark_bg">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCheckoutAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Delivery Address"
-            android:textColor="@color/dark_bg" />
+            android:hint="@string/checkout_address_hint"
+            android:textColor="@color/dark_bg"
+            android:textColorHint="@color/text_grey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +85,7 @@
         android:id="@+id/btnConfirmOrder"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Place Order"
+        android:text="@string/checkout_place_order"
         android:textColor="@color/white"
         app:backgroundTint="@color/accent"
         app:cornerRadius="12dp" />

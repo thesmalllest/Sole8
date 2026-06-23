@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/dark_bg"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/input_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userFirstNameInput"
@@ -58,7 +58,9 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:textColor="@color/dark_bg"
-                android:paddingVertical="@dimen/space_12"/>
+                android:textColorHint="@color/text_grey"
+                android:paddingVertical="@dimen/space_12" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- LAST NAME LABEL -->
@@ -78,7 +80,7 @@
             android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/dark_bg"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/input_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userLastNameInput"
@@ -86,7 +88,9 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:textColor="@color/dark_bg"
-                android:paddingVertical="@dimen/space_12"/>
+                android:textColorHint="@color/text_grey"
+                android:paddingVertical="@dimen/space_12" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- DIVIDER -->
@@ -94,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:background="@color/dark_bg"
-            android:layout_marginTop="@dimen/space_16"/>
+            android:layout_marginTop="@dimen/space_16" />
 
         <!-- GENDER LABEL -->
         <TextView
@@ -105,7 +109,7 @@
             android:textSize="@dimen/text_tiny"
             android:layout_marginTop="@dimen/space_16" />
 
-        <!-- GENDER TOGGLE (DISABLED BY DEFAULT) -->
+        <!-- GENDER TOGGLE -->
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/genderToggleInfo"
             android:layout_width="match_parent"
@@ -124,7 +128,7 @@
                 android:textAllCaps="false"
                 android:backgroundTint="@color/dark_bg"
                 android:textColor="@color/white"
-                app:cornerRadius="@dimen/space_12"/>
+                app:cornerRadius="@dimen/space_12" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/femaleBtnInfo"
@@ -135,7 +139,8 @@
                 android:textAllCaps="false"
                 android:backgroundTint="@color/dark_bg"
                 android:textColor="@color/white"
-                app:cornerRadius="@dimen/space_12"/>
+                app:cornerRadius="@dimen/space_12" />
+
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <!-- DIVIDER -->
@@ -143,7 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:background="@color/dark_bg"
-            android:layout_marginTop="@dimen/space_16"/>
+            android:layout_marginTop="@dimen/space_16" />
 
         <!-- USERNAME LABEL -->
         <TextView
@@ -162,7 +167,7 @@
             android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/dark_bg"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/input_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userUsernameInput"
@@ -170,7 +175,9 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:textColor="@color/dark_bg"
+                android:textColorHint="@color/text_grey"
                 android:paddingVertical="@dimen/space_12" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- DIVIDER -->
@@ -178,7 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:background="@color/dark_bg"
-            android:layout_marginTop="@dimen/space_16"/>
+            android:layout_marginTop="@dimen/space_16" />
 
         <!-- EMAIL LABEL -->
         <TextView
@@ -197,7 +204,7 @@
             android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/dark_bg"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/input_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userEmailInput"
@@ -205,7 +212,9 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:textColor="@color/dark_bg"
+                android:textColorHint="@color/text_grey"
                 android:paddingVertical="@dimen/space_12" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- DIVIDER -->
@@ -213,7 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:background="@color/dark_bg"
-            android:layout_marginTop="@dimen/space_16"/>
+            android:layout_marginTop="@dimen/space_16" />
 
         <!-- BIRTH LABEL -->
         <TextView
@@ -232,7 +241,7 @@
             android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/dark_bg"
-            app:boxBackgroundColor="@color/white">
+            app:boxBackgroundColor="@color/input_bg">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userBirthInput"
@@ -240,7 +249,9 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:textColor="@color/dark_bg"
-                android:paddingVertical="@dimen/space_12"/>
+                android:textColorHint="@color/text_grey"
+                android:paddingVertical="@dimen/space_12" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- EDIT BUTTON -->
@@ -257,4 +268,5 @@
             android:elevation="2dp" />
 
     </LinearLayout>
+
 </ScrollView>

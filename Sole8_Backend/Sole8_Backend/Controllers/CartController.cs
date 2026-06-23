@@ -19,11 +19,18 @@ public class CartController : ControllerBase
     [HttpPost("add")]
     public async Task<IActionResult> Add(int productId, int sizeId, int quantity)
     {
-        int userId = this.GetUserId(); 
-        await _repo.AddAsync(userId, productId, sizeId, quantity);
-        return Ok(new { message = "added" });
+        try
+        {
+            int userId = this.GetUserId();
+            await _repo.AddAsync(userId, productId, sizeId, quantity);
+            return Ok(new { message = "added" });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
-
+    
     [HttpPost("remove")]
     public async Task<IActionResult> Remove(int productId, int sizeId)
     {
@@ -35,11 +42,18 @@ public class CartController : ControllerBase
     [HttpPost("update")]
     public async Task<IActionResult> Update(int productId, int sizeId, int quantity)
     {
-        int userId = this.GetUserId();
-        await _repo.UpdateQuantityAsync(userId, productId, sizeId, quantity);
-        return Ok(new { message = "updated" });
+        try
+        {
+            int userId = this.GetUserId();
+            await _repo.UpdateQuantityAsync(userId, productId, sizeId, quantity);
+            return Ok(new { message = "updated" });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
-
+    
     [HttpGet]
     public async Task<IActionResult> Get()
     {

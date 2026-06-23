@@ -6,13 +6,28 @@
     android:orientation="vertical"
     android:background="@color/light_bg">
 
-    <!-- BACK -->
+    <!-- TOOLBAR -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/catalogToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
         android:background="@color/light_bg"
-        app:navigationIcon="?attr/homeAsUpIndicator" />
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="">
+
+        <TextView
+            android:id="@+id/catalogToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/catalog_title"
+            android:textColor="@color/dark_bg"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- SEARCH -->
     <androidx.appcompat.widget.SearchView
@@ -23,7 +38,7 @@
         android:layout_marginEnd="@dimen/space_24"
         android:layout_marginBottom="@dimen/space_8"
         android:background="@drawable/bg_search_view"
-        app:queryHint="Search..."
+        app:queryHint="@string/catalog_search_hint"
         app:iconifiedByDefault="false" />
 
     <!-- FILTERS -->
@@ -60,6 +75,7 @@
                 android:background="@drawable/bg_search_view"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp" />
+
         </LinearLayout>
 
         <!-- Row 2: Price Range Inputs -->
@@ -74,7 +90,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_search_view"
-                android:hint="Min ₽"
+                android:hint="@string/catalog_min_price_hint"
                 android:inputType="number"
                 android:textSize="14sp"
                 android:gravity="center" />
@@ -86,11 +102,13 @@
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/bg_search_view"
-                android:hint="Max ₽"
+                android:hint="@string/catalog_max_price_hint"
                 android:inputType="number"
                 android:textSize="14sp"
                 android:gravity="center" />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- LIST -->
@@ -99,6 +117,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:padding="@dimen/space_12"/>
-</LinearLayout>
+        android:padding="@dimen/space_12" />
 
+</LinearLayout>

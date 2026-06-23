@@ -13,14 +13,14 @@
         android:layout_height="4dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        android:background="#DDDDDD" />
+        android:background="@color/bottom_sheet_handle" />
 
     <TextView
         android:id="@+id/tvDetailsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Order Details"
+        android:text="@string/order_details_title"
         android:textColor="@color/dark_bg"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -31,14 +31,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="16dp"
-        android:overScrollMode="never"/>
+        android:overScrollMode="never" />
 
     <TextView
         android:id="@+id/tvDetailsStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
-        android:text="Status: Pending"
+        android:text="@string/order_status_pending"
         android:textColor="@color/dark_bg"
         android:textSize="15sp" />
 
@@ -46,7 +46,7 @@
         android:id="@+id/tvDetailsTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Price: 0 ₽"
+        android:text="@string/order_total_price_placeholder"
         android:textColor="@color/dark_bg"
         android:textSize="16sp"
         android:textStyle="bold" />

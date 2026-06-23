@@ -1,22 +1,24 @@
 package com.example.sole8
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.sole8.models.api.UserRegisterRequest
-import kotlinx.coroutines.launch
-import androidx.appcompat.app.AppCompatActivity
+import com.example.sole8.network.ApiClient
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import android.widget.Button
-import android.widget.TextView
-import com.example.sole8.network.ApiClient
-import java.util.*
+import kotlinx.coroutines.launch
+import java.util.Calendar
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
+
     private lateinit var prefs: UserPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
 
         prefs = UserPreferences(this)
 
-        // Layouts
         val firstNameLayout = findViewById<TextInputLayout>(R.id.firstNameLayout)
         val lastNameLayout = findViewById<TextInputLayout>(R.id.lastNameLayout)
         val dateLayout = findViewById<TextInputLayout>(R.id.dateLayout)
@@ -34,7 +35,6 @@ class RegisterActivity : AppCompatActivity() {
         val passLayout = findViewById<TextInputLayout>(R.id.passwordLayout)
         val confirmPassLayout = findViewById<TextInputLayout>(R.id.confirmPasswordLayout)
 
-        // Inputs
         val firstNameInput = findViewById<TextInputEditText>(R.id.firstNameInput)
         val lastNameInput = findViewById<TextInputEditText>(R.id.lastNameInput)
         val dateInput = findViewById<TextInputEditText>(R.id.dateInput)
@@ -49,7 +49,25 @@ class RegisterActivity : AppCompatActivity() {
         val registerBtn = findViewById<Button>(R.id.registerBtn)
         val backToLogin = findViewById<TextView>(R.id.backToLogin)
 
-        // Gender button color logic
+        dateInput.inputType = InputType.TYPE_NULL
+        dateInput.isFocusable = false
+        dateInput.isFocusableInTouchMode = false
+        dateInput.isClickable = true
+
+        dateInput.setOnClickListener {
+            val calendar = Calendar.getInstance()
+
+            DatePickerDialog(
+                this,
+                { _, year, month, day ->
+                    dateInput.setText(String.format("%02d/%02d/%04d", day, month + 1, year))
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
         genderToggle.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
@@ -57,6 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                         maleBtn.setBackgroundColor(getColor(R.color.black))
                         femaleBtn.setBackgroundColor(getColor(R.color.dark_bg))
                     }
+
                     R.id.femaleBtn -> {
                         femaleBtn.setBackgroundColor(getColor(R.color.black))
                         maleBtn.setBackgroundColor(getColor(R.color.dark_bg))
@@ -65,91 +84,70 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        // Registration button logic
         registerBtn.setOnClickListener {
+            firstNameLayout.error = null
+            lastNameLayout.error = null
+            dateLayout.error = null
+            usernameLayout.error = null
+            emailLayout.error = null
+            passLayout.error = null
+            confirmPassLayout.error = null
+
             val firstName = firstNameInput.text?.toString()?.trim() ?: ""
             val lastName = lastNameInput.text?.toString()?.trim() ?: ""
             val birthDate = dateInput.text?.toString()?.trim() ?: ""
             val username = usernameInput.text?.toString()?.trim() ?: ""
             val email = emailInput.text?.toString()?.trim() ?: ""
-            val password = passwordInput.text?.toString()?.trim() ?: ""
-            val confirmPassword = confirmPasswordInput.text?.toString()?.trim() ?: ""
+            val password = passwordInput.text?.toString() ?: ""
+            val confirmPassword = confirmPasswordInput.text?.toString() ?: ""
             val selectedGenderId = genderToggle.checkedButtonId
 
             var ok = true
 
-            // First Name
-            if (firstName.isEmpty()) {
+            if (!isValidName(firstName)) {
                 firstNameLayout.error = getString(R.string.error_first_name)
                 ok = false
-            } else firstNameLayout.error = null
+            }
 
-            // Last Name
-            if (lastName.isEmpty()) {
+            if (!isValidName(lastName)) {
                 lastNameLayout.error = getString(R.string.error_last_name)
                 ok = false
-            } else lastNameLayout.error = null
+            }
 
-            // Gender
             if (selectedGenderId == -1) {
-                Toast.makeText(this, getString(R.string.error_gender), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    getString(R.string.error_gender),
+                    Toast.LENGTH_SHORT
+                ).show()
+
                 ok = false
             }
 
-            // Date of Birth validation
-            if (birthDate.isEmpty()) {
-                dateLayout.error = getString(R.string.error_birth_empty)
+            if (!isValidBirthDate(birthDate)) {
+                dateLayout.error = getString(R.string.error_birth_young)
                 ok = false
-            } else {
-                val parts = birthDate.split("/")
-                if (parts.size == 3) {
-                    val d = parts[0].toInt()
-                    val m = parts[1].toInt() - 1
-                    val y = parts[2].toInt()
-
-                    val today = Calendar.getInstance()
-                    val dob = Calendar.getInstance()
-                    dob.set(y, m, d)
-
-                    // Age check (13+)
-                    val age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
-                    val ageAdjusted =
-                        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
-                            age - 1 else age
-
-                    if (ageAdjusted < 13) {
-                        dateLayout.error = getString(R.string.error_birth_young)
-                        ok = false
-                    } else dateLayout.error = null
-                } else {
-                    dateLayout.error = getString(R.string.error_birth_invalid)
-                    ok = false
-                }
             }
 
-            // Username
-            if (username.length < 3) {
+            if (!isValidUsername(username)) {
                 usernameLayout.error = getString(R.string.error_username_short)
                 ok = false
-            } else usernameLayout.error = null
+            }
 
-            // Email
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 emailLayout.error = getString(R.string.error_email_invalid)
                 ok = false
-            } else emailLayout.error = null
+            }
 
-            // Password
-            if (password.length < 4) {
+            if (!isValidPassword(password)) {
                 passLayout.error = getString(R.string.error_password_short)
                 ok = false
-            } else passLayout.error = null
+            }
 
-            // Confirm password
             if (password != confirmPassword) {
                 confirmPassLayout.error = getString(R.string.error_password_mismatch)
                 ok = false
-            } else confirmPassLayout.error = null
+            }
 
             if (!ok) return@setOnClickListener
 
@@ -167,34 +165,82 @@ class RegisterActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 try {
-                    val response = ApiClient.userApi.register(request)
+                    ApiClient.userApi.register(request)
 
                     Toast.makeText(
                         this@RegisterActivity,
-                        "Регистрация успешна!",
+                        getString(R.string.register_success),
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    // Переход на логин
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     finish()
 
                 } catch (e: Exception) {
                     Toast.makeText(
                         this@RegisterActivity,
-                        "Ошибка: ${e.message}",
+                        getString(R.string.register_error),
                         Toast.LENGTH_LONG
                     ).show()
                 }
             }
-
-
         }
 
-        // Back to Login
         backToLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+        }
+    }
+
+    private fun isValidName(value: String): Boolean {
+        return value.matches(Regex("^[A-Za-zА-Яа-яЁё\\s\\-]{2,50}$"))
+    }
+
+    private fun isValidUsername(value: String): Boolean {
+        return value.matches(Regex("^[A-Za-z0-9._]{3,20}$"))
+    }
+
+    private fun isValidPassword(value: String): Boolean {
+        if (value.length < 8) return false
+
+        val hasLetter = value.any { it.isLetter() }
+        val hasDigit = value.any { it.isDigit() }
+
+        return hasLetter && hasDigit
+    }
+
+    private fun isValidBirthDate(value: String): Boolean {
+        return try {
+            val parts = value.split("/")
+            if (parts.size != 3) return false
+
+            val day = parts[0].toInt()
+            val month = parts[1].toInt()
+            val year = parts[2].toInt()
+
+            if (month !in 1..12) return false
+            if (day !in 1..31) return false
+
+            val today = Calendar.getInstance()
+
+            val birthDate = Calendar.getInstance().apply {
+                isLenient = false
+                set(year, month - 1, day)
+                time
+            }
+
+            if (birthDate.after(today)) return false
+
+            var age = today.get(Calendar.YEAR) - birthDate.get(Calendar.YEAR)
+
+            if (today.get(Calendar.DAY_OF_YEAR) < birthDate.get(Calendar.DAY_OF_YEAR)) {
+                age--
+            }
+
+            age >= 13
+
+        } catch (e: Exception) {
+            false
         }
     }
 }
